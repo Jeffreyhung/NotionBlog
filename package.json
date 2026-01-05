@@ -1,11 +1,11 @@
 {
   "name": "notion-next",
   "version": "3.6.7",
-  "homepage": "https://github.com/Jeffreyhung/NotionNext-NotionBlog",
+  "homepage": "https://github.com/Jeffreyhung/NotionBlog",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jeffreyhung/NotionNext-NotionBlog"
+    "url": "https://github.com/Jeffreyhung/NotionBlog"
   },
   "author": {
     "name": "Jeffrey Hung",
@@ -80,7 +80,7 @@
     "yarn": ">=1.22.0"
   },
   "bugs": {
-    "url": "https://github.com/Jeffreyhung/NotionNext-NotionBlog/issues",
+    "url": "https://github.com/Jeffreyhung/NotionBlog/issues",
     "email": "contact@jeffreyhung[.]com"
   }
 }
