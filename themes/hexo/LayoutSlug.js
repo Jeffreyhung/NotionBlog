@@ -51,10 +51,21 @@ export const LayoutSlug = props => {
 
         {!lock && <div id="container" className="overflow-x-auto flex-grow mx-auto md:w-full md:px-5 ">
 
-          <article itemScope itemType="https://schema.org/Movie" className="subpixel-antialiased overflow-y-hidden" >
+          <article itemScope itemType="https://schema.org/Movie" className="subpixel-antialiased" >
             {/* Notion文章主体 */}
             <section id='notion-article' className='px-5 justify-center mx-auto max-w-2xl lg:max-w-full'>
               {post && <NotionPage post={post} />}
+            </section>
+
+            <section className="px-1 py-2 my-1 text-sm font-light overflow-auto text-gray-600  dark:text-gray-400">
+              {/* 文章内嵌广告 */}
+              <ins className="adsbygoogle"
+                style={{ display: 'block', textAlign: 'center' }}
+                data-adtest="on"
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-2708419466378217"
+                data-ad-slot="3806269138" />
             </section>
 
             {post.type === 'Post' && <ArticleCopyright {...props} /> }

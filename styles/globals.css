@@ -132,6 +132,11 @@ nav {
   backdrop-filter: blur(10px);
 }
 
+.dark .glassmorphism {
+  background: rgba(31, 41, 55, 0.75);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
 
 .medium-zoom-overlay {
   background: none !important;
@@ -189,9 +194,4 @@ nav {
 	-webkit-box-orient: vertical;
 	word-wrap: break-word;
 	word-break: break-all;
-}
-
-.next #announcement-content *{
- font-size:10px !important;
- line-height:1.5 !important;
 }

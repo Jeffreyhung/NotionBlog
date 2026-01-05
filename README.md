@@ -1,21 +1,18 @@
 # NotionNext
 
-一个使用 NextJS + Notion API 实现的，部署在 Vercel 上的静态博客系统。为Notion和所有创作者设计。
+Forked from [NotionNext](https://github.com/tangly1024/NotionNext)
+
+## Features
+- 支持更多的页面，功能，更多特性、欢迎移步[我的博客](https://tangly1024.com/article/notion-next)查看
+- Supports switching between themes
+
+| Next | Medium | Hexo | Fukasawa |
+|--|--|--|--|
+| <img src='./docs/theme-next.png' width='300'/> [预览NEXT](https://preview.tangly1024.com/?theme=next)  | <img src='./docs/theme-medium.png' width='300'/> [预览MEDIUM](https://preview.tangly1024.com/?theme=medium) | <img src='./docs/theme-hexo.png' width='300'/> [预览HEXO](https://preview.tangly1024.com/?theme=hexo) | <img src='./docs/theme-fukasawa.png' width='300'/> [预览FUKASAWA](https://preview.tangly1024.com/?theme=fukasawa) |
+
+*You can update the theme by changing the `THEME` in the `blog.config.js` file, didn't see one you like? Consider [contribute](/CONTRIBUTING.md) one~
 
 
-## 预览效果
-
-
-## 我要如何开始？
-
-只需几分钟即可搭建您的个人站点，欢迎移步[我的博客](https://tangly1024.com/article/notion-next) 查看教程 
-
-
-## 致谢
-感谢Craig Hart发起的Nobelium项目
-<table><tr align="left">
-  <td align="center"><a href="https://github.com/craigary" title="Craig Hart"><img src="https://avatars.githubusercontent.com/u/10571717" width="64px;"alt="Craig Hart"/></a><br/><a href="https://github.com/craigary" title="Craig Hart">Craig Hart</a></td>
-</tr></table>
 
 ## Quick Start
 - Duplicate [This Notion Template](https://tanghh.notion.site/02ab3b8678004aa69e9e415905ef32a5) and shared it to public
@@ -34,6 +31,7 @@ yarn run dev # local dev
 yarn run build # local build
 yarn run start # start local Next JS service
 ```
+
 ## Based on
 
 - **Framework**: [Next.js](https://nextjs.org)
@@ -41,6 +39,9 @@ yarn run start # start local Next JS service
 - **Redered**: [React-notion-x](https://github.com/NotionX/react-notion-x)
 - **Comments**: [Giscus](https://giscus.app/zh-CN), [Gitalk](https://gitalk.github.io), [Cusdis](https://gitalk.github.io), [Utterances](https://utteranc.es)
 - **Icons**：[fontawesome v5.15](https://fontawesome.com/v5.15/icons?d=gallery)
+
+## Update logs
+[Logs](https://docs.tangly1024.com/zh/changelog)
 
 
 ## License

@@ -2,6 +2,7 @@ import { getGlobalNotionData } from '@/lib/notion/getNotionData'
 import React from 'react'
 import { useGlobal } from '@/lib/global'
 import * as ThemeMap from '@/themes'
+import { getAllCategories } from '@/lib/notion/getAllCategories'
 import BLOG from '@/blog.config'
 
 /**
@@ -26,9 +27,10 @@ export default function Category(props) {
 
 export async function getStaticProps() {
   const props = await getGlobalNotionData({ from: 'category-index-props' })
-  delete props.allPages
+  props.categories = getAllCategories({ allPages: props.allPages, categoryOptions: props.categoryOptions, sliceCount: 0 })
+  delete props.categoryOptions
   return {
     props,
-    revalidate: parseInt(BLOG.NEXT_REVALIDATE_SECOND)
+    revalidate: BLOG.NEXT_REVALIDATE_SECOND
   }
 }

@@ -10,8 +10,6 @@ import FloatDarkModeButton from './components/FloatDarkModeButton'
 import LoadingCover from './components/LoadingCover'
 import { useGlobal } from '@/lib/global'
 import BLOG from '@/blog.config'
-import dynamic from 'next/dynamic'
-
 
 /**
  * 基础布局 采用左右两侧布局，移动端使用顶部导航栏
@@ -25,6 +23,7 @@ const LayoutBase = props => {
   // const [percent, changePercent] = useState(0) // 页面阅读百分比
   const rightAreaSlot = (
     <>
+
     </>
   )
   const { onLoading } = useGlobal()
@@ -57,12 +56,12 @@ const LayoutBase = props => {
 
       {headerSlot}
 
-      <main id="wrapper" className="w-full py-8 md:px-8 lg:px-24 min-h-screen relative">
+      <main id="wrapper" className="w-full py-8 md:px-8 lg:px-24 min-h-screen">
         <div
           id="container-inner"
-          className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' pt-14 w-full mx-auto lg:flex lg:space-x-4 justify-center relative z-10'}
+          className="pt-14 w-full mx-auto lg:flex lg:space-x-4 justify-center"
         >
-          <div className="w-full max-w-4xl h-full">
+          <div className="w-full max-w-4xl overflow-x-hidden">
             {onLoading ? <LoadingCover /> : children}
           </div>
           <SideRight {...props} slot={rightAreaSlot} />

@@ -29,20 +29,15 @@ const BlogPostArchive = ({ posts = [], archiveTitle }) => {
               <div id={post?.date?.start_date}>
                 <span className="text-gray-400">{post.date?.start_date}</span>{' '}
                 &nbsp;
-                <Link
-                  href={`${BLOG.SUB_PATH}/${post.slug}`}
-                  passHref
-                  className="dark:text-gray-400  dark:hover:text-indigo-300 overflow-x-hidden hover:underline cursor-pointer text-gray-600">
-
+                <Link href={`${BLOG.SUB_PATH}/${post.slug}`} className="dark:text-gray-400  dark:hover:text-indigo-300 overflow-x-hidden hover:underline cursor-pointer text-gray-600">
                   {post.title}
-
                 </Link>
               </div>
             </li>
           ))}
         </ul>
       </div>
-    );
+    )
   }
 }
 

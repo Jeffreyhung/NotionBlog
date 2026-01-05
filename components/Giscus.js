@@ -1,6 +1,5 @@
 import BLOG from '@/blog.config'
-import { useGlobal } from '@/lib/global'
-import Giscus from '@giscus/react'
+import { Giscus } from '@giscus/react'
 
 /**
  * Giscus评论 @see https://giscus.app/zh-CN
@@ -9,10 +8,8 @@ import Giscus from '@giscus/react'
  * @constructor
  */
 
-const GiscusComponent = () => {
-  const { isDarkMode } = useGlobal()
+const GiscusComponent = ({ isDarkMode }) => {
   const theme = isDarkMode ? 'dark' : 'light'
-
   return (
     <Giscus
       repo={BLOG.COMMENT_GISCUS_REPO}

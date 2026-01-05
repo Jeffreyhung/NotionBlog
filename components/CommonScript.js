@@ -26,6 +26,32 @@ const CommonScript = () => {
       />
     </>)}
 
+    {BLOG.COMMENT_CUSDIS_APP_ID && <script defer src='https://cusdis.com/js/widget/lang/zh-cn.js' />}
+
+    {BLOG.COMMENT_TIDIO_ID && <script async src={`//code.tidio.co/${BLOG.COMMENT_TIDIO_ID}.js`} />}
+
+    {/* gitter聊天室 */}
+    {BLOG.COMMENT_GITTER_ROOM && (<>
+      <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer/>
+      <script async dangerouslySetInnerHTML={{
+        __html: `
+                ((window.gitter = {}).chat = {}).options = {
+                  room: '${BLOG.COMMENT_GITTER_ROOM}'
+                };
+                `
+      }}/>
+    </>)}
+
+    {/* 站长统计 */}
+    {BLOG.ANALYTICS_CNZZ_ID && (
+      <script async
+              dangerouslySetInnerHTML={{
+                __html: `
+              document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_${BLOG.ANALYTICS_CNZZ_ID}'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D${BLOG.ANALYTICS_CNZZ_ID}' type='text/javascript'%3E%3C/script%3E"));
+              `
+              }}
+      />
+    )}
   </>)
 }
 

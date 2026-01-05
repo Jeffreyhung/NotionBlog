@@ -40,13 +40,12 @@ export async function getStaticProps({ params: { keyword, page } }) {
   props.posts = await filterByMemCache(allPosts, keyword)
   props.postCount = props.posts.length
   // 处理分页
-  props.posts = props.posts.slice(BLOG.POSTS_PER_PAGE * (page - 1), BLOG.POSTS_PER_PAGE * page)
+  props.posts = props.posts.slice(BLOG.POSTS_PER_PAGE * (page - 1), BLOG.POSTS_PER_PAGE * page - 1)
   props.keyword = keyword
   props.page = page
-  delete props.allPages
   return {
     props,
-    revalidate: parseInt(BLOG.NEXT_REVALIDATE_SECOND)
+    revalidate: BLOG.NEXT_REVALIDATE_SECOND
   }
 }
 
@@ -128,7 +127,6 @@ async function filterByMemCache(allPosts, keyword) {
         indexContent = appendText(indexContent, properties, 'caption')
       })
     }
-    // console.log('全文搜索缓存', cacheKey, page != null)
     post.results = []
     let hitCount = 0
     for (const i in indexContent) {

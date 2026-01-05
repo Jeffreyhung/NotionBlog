@@ -14,10 +14,11 @@ class MyDocument extends Document {
       <Html lang={BLOG.LANG} className='test'>
         <Head>
           <link rel='icon' href='/favicon.ico' />
+          <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
           <CommonScript />
         </Head>
 
-        <body className={`${BLOG.FONT_STYLE} tracking-wider bg-day dark:bg-night`}>
+        <body className={'tracking-wider subpixel-antialiased bg-day dark:bg-night'}>
             <Main />
             <NextScript />
         </body>

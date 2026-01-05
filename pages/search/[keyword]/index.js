@@ -43,12 +43,12 @@ export async function getStaticProps({ params: { keyword } }) {
   if (BLOG.POST_LIST_STYLE === 'scroll') {
     // 滚动列表 给前端返回所有数据
   } else if (BLOG.POST_LIST_STYLE === 'page') {
-    props.posts = props.posts?.slice(0, BLOG.POSTS_PER_PAGE)
+    props.posts = props.posts?.slice(0, BLOG.POSTS_PER_PAGE - 1)
   }
   props.keyword = keyword
   return {
     props,
-    revalidate: parseInt(BLOG.NEXT_REVALIDATE_SECOND)
+    revalidate: BLOG.NEXT_REVALIDATE_SECOND
   }
 }
 

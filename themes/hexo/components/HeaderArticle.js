@@ -19,7 +19,7 @@ export default function HeaderArticle({ post, siteInfo }) {
   return (
     <div
       id="header"
-      className="w-full h-96 relative md:flex-shrink-0 overflow-hidden bg-cover bg-center bg-no-repeat animate__animated animate__fadeIn relative"
+      className="w-full h-96 relative md:flex-shrink-0 overflow-hidden bg-cover bg-center bg-no-repeat animate__animated animate__fadeIn"
       style={{ backgroundImage: headerImage }}
     >
       <header className="animate__slideInDown animate__animated bg-black bg-opacity-70 absolute top-0 w-full h-96 py-10 flex justify-center items-center ">
@@ -32,11 +32,9 @@ export default function HeaderArticle({ post, siteInfo }) {
           <section className="flex-wrap shadow-text flex text-sm justify-center mt-2 text-white dark:text-gray-400 font-light leading-8">
             <div className='dark:text-gray-200'>
               {post.category && <>
-                <Link href={`/category/${post.category}`} passHref legacyBehavior>
-                  <div className="cursor-pointer mr-2 dark:hover:text-white hover:underline">
-                    <i className="mr-1 fas fa-folder-open" />
-                    {post.category}
-                  </div>
+                <Link href={`/category/${post.category}`} className="cursor-pointer mr-2 dark:hover:text-white hover:underline">
+                  <i className="mr-1 fas fa-folder-open" />
+                  {post.category}
                 </Link>
               </>}
             </div>
@@ -45,11 +43,9 @@ export default function HeaderArticle({ post, siteInfo }) {
                 <>
                   <Link
                     href={`/archive#${post?.date?.start_date?.substr(0, 7)}`}
-                    passHref
-                    className="pl-1 mr-2 cursor-pointer hover:underline">
-
-                    {locale.COMMON.POST_TIME}:{date}
-
+                    className="pl-1 mr-2 cursor-pointer hover:underline"
+                  >
+                    {locale.COMMON.POST_TIME}: {date}
                   </Link>
                 </>
               )}
@@ -61,5 +57,5 @@ export default function HeaderArticle({ post, siteInfo }) {
         </div>
       </header>
     </div>
-  );
+  )
 }

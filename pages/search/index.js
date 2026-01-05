@@ -19,7 +19,7 @@ const Search = props => {
       return searchContent.toLowerCase().includes(searchKey.toLowerCase())
     })
   } else {
-    filteredPosts = []
+    filteredPosts = posts
   }
 
   const { locale } = useGlobal()
@@ -55,10 +55,11 @@ export async function getStaticProps() {
     pageType: ['Post']
   })
   const { allPages } = props
-  props.posts = allPages.filter(page => page.type === 'Post' && page.status === 'Published')
+  const allPosts = allPages.filter(page => page.type === 'Post' && page.status === 'Published')
+  props.posts = allPosts
   return {
     props,
-    revalidate: parseInt(BLOG.NEXT_REVALIDATE_SECOND)
+    revalidate: BLOG.NEXT_REVALIDATE_SECOND
   }
 }
 
