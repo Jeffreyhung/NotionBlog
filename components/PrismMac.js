@@ -43,11 +43,12 @@ const renderMermaid = async() => {
   const mermaidPres = document.querySelectorAll('pre.notion-code.language-mermaid')
   if (mermaidPres) {
     for (const e of mermaidPres) {
-      const chart = e.querySelector('code').textContent
+      const chart = e.querySelector('code')?.textContent
       if (chart && !e.querySelector('.mermaid')) {
         const m = document.createElement('div')
         m.className = 'mermaid'
-        m.innerHTML = chart
+        // Store the diagram source as data, avoid interpreting it as HTML
+        m.setAttribute('data-graph', chart)
         e.appendChild(m)
       }
     }
@@ -59,6 +60,16 @@ const renderMermaid = async() => {
     for (const e of mermaidsSvg) {
       if (e?.firstChild?.nodeName !== 'svg') {
         needLoad = true
+      }
+      // Populate each mermaid container from its data attribute safely,
+      // then let Mermaid process the content.
+      for (const e of mermaidsSvg) {
+        if (e?.firstChild?.nodeName !== 'svg') {
+          const graphSource = e.getAttribute('data-graph')
+          if (graphSource) {
+            e.textContent = graphSource
+          }
+        }
       }
     }
     if (needLoad) {
