@@ -11,6 +11,10 @@ import TagItemMini from './components/TagItemMini'
 import Card from './components/Card'
 import Link from 'next/link'
 
+const escapeRegExp = (value) => {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
 export const LayoutSearch = props => {
   const { keyword, tags, categories } = props
   const { locale } = useGlobal()
@@ -23,10 +27,11 @@ export const LayoutSearch = props => {
       // 自动聚焦到搜索框
       cRef?.current?.focus()
       if (currentSearch) {
+        const safeSearch = escapeRegExp(currentSearch)
         const targets = document.getElementsByClassName('replace')
         for (const container of targets) {
           if (container && container.innerHTML) {
-            const re = new RegExp(currentSearch, 'gim')
+            const re = new RegExp(safeSearch, 'gim')
             const instance = new Mark(container)
             instance.markRegExp(re, {
               element: 'span',
