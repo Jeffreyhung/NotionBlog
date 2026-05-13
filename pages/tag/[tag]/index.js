@@ -63,7 +63,7 @@ function getTagNames(tags) {
 export async function getStaticPaths() {
   const from = 'tag-static-path'
   const { tags } = await getGlobalNotionData({ from })
-  const tagNames = getTagNames(tags)
+  const tagNames = getTagNames(tags || [])
 
   return {
     paths: Object.keys(tagNames).map(index => ({

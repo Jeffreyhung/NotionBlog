@@ -58,7 +58,7 @@ export async function getStaticPaths() {
 
   categories?.forEach(category => {
     // 过滤状态类型
-    const categoryPosts = allPages.filter(page => page.type === 'Post' && page.status === 'Published').filter(post => post && post.category && post.category.includes(category.name))
+    const categoryPosts = (allPages || []).filter(page => page.type === 'Post' && page.status === 'Published').filter(post => post && post.category && post.category.includes(category.name))
     // 处理文章页数
     const postCount = categoryPosts.length
     const totalPages = Math.ceil(postCount / BLOG.POSTS_PER_PAGE)
