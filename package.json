@@ -25,7 +25,7 @@
     "@popperjs/core": "^2.9.3",
     "animate.css": "^4.1.1",
     "animejs": "^3.2.1",
-    "axios": ">=0.21.1",
+    "axios": ">=0.31.1",
     "copy-to-clipboard": "^3.3.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "feed": "^4.2.2",
@@ -35,9 +35,9 @@
     "lodash.throttle": "^4.1.1",
     "mark.js": "^8.11.1",
     "memory-cache": "^0.2.0",
-    "mermaid": "10.9.5",
+    "mermaid": "10.9.6",
     "mongodb": "^6.12.0",
-    "next": "14.2.35",
+    "next": "15.5.18",
     "notion-client": "6.15.6",
     "notion-utils": "6.15.6",
     "preact": "^10.28.2",
@@ -67,12 +67,12 @@
     "eslint-plugin-promise": "6.6.0",
     "eslint-plugin-react": "7.37.5",
     "next-sitemap": "3.1.55",
-    "postcss": "8.4.32",
+    "postcss": "8.5.10",
     "tailwindcss": "3.1.8",
     "webpack-bundle-analyzer": "4.6.1"
   },
   "resolutions": {
-    "axios": "0.30.2"
+    "axios": "0.31.1"
   },
   "engines": {
     "node": ">=22.0.0",
