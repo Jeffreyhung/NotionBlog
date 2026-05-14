@@ -3,6 +3,7 @@ import useNotification from '@/components/Notification'
 import TechGrow from '@/components/TechGrow'
 import { siteConfig } from '@/lib/config'
 import { resolvePostProps } from '@/lib/db/SiteDataApi'
+import { isExport } from '@/lib/utils/buildMode'
 import { useGlobal } from '@/lib/global'
 import { getPageTableOfContents } from '@/lib/db/notion/getPageTableOfContents'
 import {

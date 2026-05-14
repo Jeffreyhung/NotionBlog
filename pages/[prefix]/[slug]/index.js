@@ -1,6 +1,7 @@
 import BLOG from '@/blog.config'
 import { siteConfig } from '@/lib/config'
 import { resolvePostProps } from '@/lib/db/SiteDataApi'
+import { isExport } from '@/lib/utils/buildMode'
 import Slug from '..'
 import { checkSlugHasOneSlash } from '@/lib/utils/post'
 import { getStaticPathsBase } from '@/lib/build/staticPaths'
