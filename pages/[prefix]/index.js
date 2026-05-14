@@ -42,14 +42,17 @@ const Slug = props => {
     if (!post) {
       return false
     }
+    const passHash = sha256Digest(passInput)
     const legacy = md5(String(post?.slug ?? '') + passInput)
-    const nextHash = sha256Digest(passInput)
-    if (nextHash === post?.password || legacy === post?.password) {
+    // 兼容两类输入：明文（手动输入）与摘要（从本地存储/URL历史读取）
+    const isValidBySha256 = passHash === post?.password || passInput === post?.password
+    const isValidByLegacy = legacy === post?.password
+    if (isValidBySha256 || isValidByLegacy) {
       setLock(false)
-      // 输入密码存入 localStorage；键仅含 pathname，避免 query/hash 导致读写不一致（PR #3389）
+      // 输入密码仅存摘要到 localStorage；键仅含 pathname，避免 query/hash 导致读写不一致（PR #3389）
       localStorage.setItem(
         'password_' + getPasswordStoragePath(router.asPath),
-        passInput
+        passHash
       )
       showNotification(locale.COMMON.ARTICLE_UNLOCK_TIPS) // 设置解锁成功提示显示
       return true
