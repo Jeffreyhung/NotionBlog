@@ -43,18 +43,19 @@ function createMouseCanvas() {
       const obj = arguments[i]
       if (!obj) continue
       for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          if (
-            typeof obj[key] === 'object' &&
-            obj[key] !== null &&
-            !Array.isArray(obj[key])
-          ) {
-            // 如果属性值是对象但不是数组，递归合并
-            out[key] = deepExtend(out[key], obj[key])
-          } else {
-            // 直接覆盖属性值
-            out[key] = obj[key]
-          }
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype')
+          continue
+        if (
+          typeof obj[key] === 'object' &&
+          obj[key] !== null &&
+          !Array.isArray(obj[key])
+        ) {
+          // 如果属性值是对象但不是数组，递归合并
+          out[key] = deepExtend(out[key], obj[key])
+        } else {
+          // 直接覆盖属性值
+          out[key] = obj[key]
         }
       }
     }

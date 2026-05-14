@@ -7,7 +7,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const { execSync } = require('child_process')
+const { execSync, execFileSync } = require('child_process')
 
 // 颜色输出
 const colors = {
@@ -28,6 +28,20 @@ function runCommand(command, description) {
   log(`\n🔧 ${description}...`, 'blue')
   try {
     const output = execSync(command, { encoding: 'utf8', stdio: 'pipe' })
+    log(`✅ ${description} 完成`, 'green')
+    return { success: true, output }
+  } catch (error) {
+    log(`❌ ${description} 失败`, 'red')
+    if (error.stdout) console.log(error.stdout)
+    if (error.stderr) console.error(error.stderr)
+    return { success: false, error: error.message }
+  }
+}
+
+function runCommandFile(file, args, description) {
+  log(`\n🔧 ${description}...`, 'blue')
+  try {
+    const output = execFileSync(file, args, { encoding: 'utf8', stdio: 'pipe' })
     log(`✅ ${description} 完成`, 'green')
     return { success: true, output }
   } catch (error) {
@@ -124,7 +138,7 @@ function clean() {
   dirsToClean.forEach(dir => {
     const fullPath = path.join(process.cwd(), dir)
     if (fs.existsSync(fullPath)) {
-      runCommand(`rm -rf ${fullPath}`, `清理 ${dir}`)
+      runCommandFile('rm', ['-rf', fullPath], `清理 ${dir}`)
     } else {
       log(`📁 ${dir} 不存在，跳过`, 'cyan')
     }
