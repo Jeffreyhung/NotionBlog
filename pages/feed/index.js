@@ -1,10 +1,9 @@
-import { generateRss } from '@/lib/rss'
-import { getGlobalNotionData } from '@/lib/notion/getNotionData'
+import { generateRss } from '@/lib/utils/rss'
+import { fetchGlobalAllData } from '@/lib/db/SiteDataApi'
 
 export async function getServerSideProps ({ res }) {
   res.setHeader('Content-Type', 'text/xml')
-  // 获取最新文章
-  const globalNotionData = await getGlobalNotionData({ from: 'rss' })
+  const globalNotionData = await fetchGlobalAllData({ from: 'rss' })
   const xmlFeed = await generateRss(globalNotionData?.latestPosts || [])
   res.write(xmlFeed)
   res.end()
