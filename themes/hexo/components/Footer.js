@@ -1,55 +1,43 @@
-import React from 'react'
-import BLOG from '@/blog.config'
-import DarkModeButton from '@/components/DarkModeButton'
-import { useGlobal } from '@/lib/global'
+import { BeiAnGongAn } from '@/components/BeiAnGongAn'
+import BeiAnSite from '@/components/BeiAnSite'
+import PoweredBy from '@/components/PoweredBy'
+import { siteConfig } from '@/lib/config'
 
 const Footer = ({ title }) => {
   const d = new Date()
   const currentYear = d.getFullYear()
-  const copyrightDate = (function() {
-    if (Number.isInteger(BLOG.SINCE) && BLOG.SINCE < currentYear) {
-      return BLOG.SINCE + '-' + currentYear
-    }
-    return currentYear
-  })()
-  const { locale } = useGlobal()
+  const since = siteConfig('SINCE')
+  const copyrightDate =
+    parseInt(since) < currentYear ? since + '-' + currentYear : currentYear
 
   return (
-    <footer
-      className=' dark:bg-black flex-shrink-0 bg-hexo-light-gray justify-center text-center m-auto w-full leading-6  text-gray-600 dark:text-gray-100 text-sm p-6'
-    >
-      <div className="flex flex-col items-center space-y-2">
-        <DarkModeButton/>
-        
-        <div className="flex flex-wrap justify-center items-center space-x-2">
-          <span>© {copyrightDate}</span>
-          <span className="mx-2">|</span>
-          <span>{title || BLOG.TITLE}</span>
-          {BLOG.AUTHOR && (
-            <>
-              <span className="mx-2">|</span>
-              <span>{locale.COMMON.AUTHOR}: {BLOG.AUTHOR}</span>
-            </>
-          )}
-        </div>
-        
-        {BLOG.BEI_AN && (
-          <div className="text-xs">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener noreferrer" className="hover:underline">
-              {BLOG.BEI_AN}
-            </a>
-          </div>
-        )}
-        
-        {BLOG.CONTACT_GITHUB && (
-          <div className="text-xs">
-            <a href={BLOG.CONTACT_GITHUB} target="_blank" rel="nofollow noopener noreferrer" className="hover:underline">
-              <i className="fab fa-github mr-1" />
-              GitHub
-            </a>
-          </div>
-        )}
-      </div>
+    <footer className='relative z-10 dark:bg-black flex-shrink-0 bg-hexo-light-gray justify-center text-center m-auto w-full leading-6  text-gray-600 dark:text-gray-100 text-sm p-6'>
+      {/* <DarkModeButton/> */}
+      <i className='fas fa-copyright' /> {`${copyrightDate}`}
+      <span>
+        <i className='mx-1 animate-pulse fas fa-heart' />
+        <a
+          href={siteConfig('LINK')}
+          className='underline font-bold  dark:text-gray-300 '>
+          {siteConfig('AUTHOR')}
+        </a>
+        .<br />
+        <BeiAnSite />
+        <BeiAnGongAn />
+        <span className='hidden busuanzi_container_site_pv'>
+          <i className='fas fa-eye' />
+          <span className='px-1 busuanzi_value_site_pv'> </span>
+        </span>
+        <span className='pl-2 hidden busuanzi_container_site_uv'>
+          <i className='fas fa-users' />
+          <span className='px-1 busuanzi_value_site_uv'> </span>
+        </span>
+        <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>
+          {title} {siteConfig('BIO') && <>|</>} {siteConfig('BIO')}
+        </h1>
+        <PoweredBy className='justify-center' />
+      </span>
+      <br />
     </footer>
   )
 }

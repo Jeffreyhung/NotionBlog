@@ -1,6 +1,7 @@
-import BLOG from '@/blog.config'
+import LazyImage from '@/components/LazyImage'
 import { useGlobal } from '@/lib/global'
-import Link from 'next/link'
+// import Image from 'next/image'
+import SmartLink from '@/components/SmartLink'
 import { useRouter } from 'next/router'
 
 /**
@@ -20,42 +21,44 @@ const LatestPostsGroup = ({ latestPosts, siteInfo }) => {
 
   return (
     <>
-      <div className=" mb-2 px-1 flex flex-nowrap justify-between">
+      <div className=' mb-2 px-1 flex flex-nowrap justify-between'>
         <div>
-          <i className="mr-2 fas fas fa-history" />
+          <i className='mr-2 fas fas fa-history' />
           {locale.COMMON.LATEST_POSTS}
         </div>
       </div>
       {latestPosts.map(post => {
-        const selected = currentPath === `${BLOG.SUB_PATH}/${post.slug}`
-        const headerImage = post?.page_cover
-          ? `url("${post.page_cover}")`
-          : `url("${siteInfo?.pageCover}")`
+        const headerImage = post?.pageCoverThumbnail
+          ? post.pageCoverThumbnail
+          : siteInfo?.pageCover
+        const selected = currentPath === post?.href
 
         return (
-          <Link
+          <SmartLink
             key={post.id}
             title={post.title}
-            href={`${BLOG.SUB_PATH}/${post.slug}`}
-            className={'my-2 flex'}
-          >
-            <div
-              className="w-20 h-16 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: headerImage }}
-            />
+            href={post?.href}
+            passHref
+            className={'my-3 flex'}>
+            <div className='w-20 h-14 overflow-hidden relative'>
+              <LazyImage
+                alt={post?.title}
+                src={`${headerImage}`}
+                className='object-cover w-full h-full'
+              />
+            </div>
             <div
               className={
                 (selected ? ' text-indigo-400 ' : 'dark:text-gray-400 ') +
                 ' text-sm overflow-x-hidden hover:text-indigo-600 px-2 duration-200 w-full rounded ' +
-                'hover:text-white dark:hover:text-indigo-400 cursor-pointer items-center flex'
-              }
-            >
+                ' hover:text-indigo-400 cursor-pointer items-center flex'
+              }>
               <div>
-                <div className='text-line-2'>{post.title}</div>
-                <div className="text-gray-500">{post.lastEditedTime}</div>
+                <div className='line-clamp-2 menu-link'>{post.title}</div>
+                <div className='text-gray-500'>{post.lastEditedDay}</div>
               </div>
             </div>
-          </Link>
+          </SmartLink>
         )
       })}
     </>
